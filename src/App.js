@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import AuthSignup from "./components/AuthSignup";
+import AuthLogin from "./components/AuthLogin";
+import Download from "./components/Download";
+import Welcome from "./components/Welcome";
+import AuthLogout from "./components/AuthLogout";
+import AuthState from "./context/AuthContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthState>
+      <div className="container-fluid">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<AuthSignup />} />
+          <Route path="/signin" element={<AuthLogin />} />
+          <Route path="/downloads" element={<Download />} />
+          <Route path="/post-login" element={<Welcome />} />
+          <Route path="/logout" element={<AuthLogout />} />
+        </Routes>
+      </div>
+    </AuthState>
   );
 }
 
